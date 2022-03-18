@@ -1,7 +1,7 @@
 const fileSystem = require('fs') // or in new versions:  import { write, writeFile } from 'fs'
 
 
-const createTableInFile = async (tableNumber = 1) => {
+const createTableInFile = async (tableNumber = 1, limit) => {
     let output = "";
     console.clear();
     console.log("========================")
@@ -9,7 +9,7 @@ const createTableInFile = async (tableNumber = 1) => {
     console.log("========================")
 
 
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < (limit+1); i++) {
         output += (`5 x ${i} = ${tableNumber * i} \n`);
     }
 
