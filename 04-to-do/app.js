@@ -1,5 +1,6 @@
 require("colors");
 
+const { saveDB } = require("./db/saveFile");
 const { menuInquirer, pause, readInput } = require("./helpers/inquirer");
 const Tasks = require('./models/Tasks')
 
@@ -8,6 +9,9 @@ const main = async () => {
   let option = '';
 
   let tasks = new Tasks();
+  tasks.newTask('Task 1')
+  tasks.newTask('Task 2')
+  tasks.newTask('Task 3')
   /**
      * 1. New task
      2. List completed task`
@@ -26,13 +30,14 @@ const main = async () => {
 
         break;
       case '2':
-        console.log(tasks.getTasks());
+        console.log(tasks.showTasks);
         break;
 
       default:
         break;
     }
 
+    saveDB(tasks.showTasks);
     console.log("🚀 ~ file: app.js ~ line 9 ~ main ~ option", { option }, (option !== 0));
 
     try {

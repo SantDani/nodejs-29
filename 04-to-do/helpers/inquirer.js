@@ -8,28 +8,28 @@ const menuQuestions = [
     message: "Chose a option",
     choices: [
       {
-        value: '1',
-        name: "1. New task",
+        value: "1",
+        name: `${"1".green}. New task`,
       },
       {
         value: '2',
-        name: "2. List completed task",
+        name: `${"2".green}. List completed task`,
       },
       {
         value: '3',
-        name: "3. List pending task",
+        name: `${"3".green}. List pending task`,
       },
       {
         value: '4',
-        name: "4. Complete task(s)",
+        name: `${"4".green}. Complete task(s)`,
       },
       {
         value: '5',
-        name: "5. Delete task",
+        name: `${"5".green}. Delete task`,
       },
       {
         value: '0',
-        name: "0. Exit",
+        name: `${"0".green}. Exit`,
       },
     ],
   },
