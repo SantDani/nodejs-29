@@ -35,6 +35,16 @@ const menuQuestions = [
   },
 ];
 
+/**
+ * 
+ * 1. New task
+    2. List completed task
+    3. List pending task
+    4. Complete task(s)
+    5. Delete task
+    0. Exit
+ * @returns 
+ */
 const menuInquirer = async () => {
     console.clear();
   console.log("=================================".green);

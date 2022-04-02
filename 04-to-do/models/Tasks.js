@@ -22,6 +22,12 @@ class Tasks {
         this._list[task.id] = task;
     }
 
+    loadTaskFromDB(tasks = []){
+        tasks.map((task)=> {    
+            this._list[task.id] = task;
+        })
+    }
+
     getTasks(){
         return this._list;
     }

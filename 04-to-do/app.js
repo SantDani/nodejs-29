@@ -1,6 +1,6 @@
 require("colors");
 
-const { saveDB } = require("./db/saveFile");
+const { saveDB, readDB } = require("./db/saveFile");
 const { menuInquirer, pause, readInput } = require("./helpers/inquirer");
 const Tasks = require('./models/Tasks')
 
@@ -9,18 +9,13 @@ const main = async () => {
   let option = '';
 
   let tasks = new Tasks();
-  tasks.newTask('Task 1')
-  tasks.newTask('Task 2')
-  tasks.newTask('Task 3')
-  /**
-     * 1. New task
-     2. List completed task`
-     3. List pending task
-     4. Complete task(s)
-     5. Delete task
-     0. Exit
-     
-     */
+
+  const taskDB = readDB();
+
+  if (taskDB) {
+    tasks.loadTaskFromDB(taskDB)
+  }
+
   do {
     option = await menuInquirer();
     switch (option) {
@@ -38,17 +33,15 @@ const main = async () => {
     }
 
     saveDB(tasks.showTasks);
-    console.log("🚀 ~ file: app.js ~ line 9 ~ main ~ option", { option }, (option !== 0));
 
     try {
       await pause();
     } catch (error) {
-      console.log("🚀 ~ file: app.js ~ line 40 ~ main ~ error", error)
+      console.error("🚀 ~ file: app.js ~ line 40 ~ main ~ error", error)
 
     }
     console.log('FFF', option);
   } while (option !== '0');
-  // } while (true);
 };
 
 main();

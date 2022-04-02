@@ -1,22 +1,22 @@
 [
     {
-        "id": "a21eb4e2-04ae-477b-8bfb-ed25b21c33f3",
+        "id": "f3857c97-a5ba-4ec4-b44f-956faa66e8ac",
         "description": "Task 1",
         "finishedAt": null
     },
     {
-        "id": "ce2feec4-a888-41b2-a5a8-3dbaf60d8ef4",
+        "id": "375b9fc9-bb67-4ec8-8be8-5956a13da735",
         "description": "Task 2",
         "finishedAt": null
     },
     {
-        "id": "18590ac7-6266-47ba-a289-621abcb0db12",
+        "id": "e9c09f95-6e92-4746-acbb-380477465f84",
         "description": "Task 3",
         "finishedAt": null
     },
     {
-        "id": "39f7f51b-4b24-4aaf-b6fd-d0799dc6d717",
-        "description": "fake JSON",
+        "id": "b7ae37bb-3238-4250-bdda-b2b4120a07d3",
+        "description": "task from console",
         "finishedAt": null
     }
 ]
