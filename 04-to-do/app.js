@@ -25,7 +25,15 @@ const main = async () => {
 
         break;
       case '2':
-        console.log(tasks.showTasks);
+        tasks.listTask();
+        break;
+
+      case '3':
+        tasks.listCompletedTask(false);
+        break;
+      case '4':
+
+        tasks.listCompletedTask(true);
         break;
 
       default:
