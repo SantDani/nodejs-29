@@ -21,13 +21,13 @@ const main = async () => {
                 // select site
                 // show climate
                 // show results
-                console. log('\nInformation city\n'.green);
-                console. log ('City:', );
-                console. log('Lat:', );
-                console. log('Lng: ', );
-                console. log('Temperature:', );
-                console. log('Minimum :', );
-                console. log('Maximum :', );
+                // console. log('\nInformation city\n'.green);
+                // console. log ('City:', );
+                // console. log('Lat:', );
+                // console. log('Lng: ', );
+                // console. log('Temperature:', );
+                // console. log('Minimum :', );
+                // console. log('Maximum :', );
                  
                 break;
             case 2:

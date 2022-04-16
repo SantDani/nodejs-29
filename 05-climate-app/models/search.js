@@ -1,20 +1,53 @@
 const axios = require('axios');
+require('dotenv').config() // need a .env with token ignored in git // console.log(process.env.MAPBOX_KEY);
 
 class Search {
     history = ['Madrid', 'Tegucigalpa', 'San Jose']
 
-    constructor(){
+    constructor() {
         // TODO.. read DB
         console.log("Hello Search");
     }
 
-    async city( site = ''){
-        
+
+    get paramsMapbox() {
+
+        return {
+            'access_token': process.env.MAPBOX_KEY,
+            'language': 'es',
+            'limit': 5,
+            'proximity': 'ip',
+            'types': 'place%2Cpostcode%2Caddress'
+        }
+    }
+    async city(site = '') {
+
         // call HTTP
         console.log(site, 'Search.city');
-        const response = await axios.get('https://reqres.in/api/users?page=2')
-        console.log("🚀 ~ file: search.js ~ line 16 ~ Search ~ city ~ response", response.data)
+        // create a Request Config not WORK F
 
+        // const instance = axios.create({
+        //     baseURL: `api.mapbox.com/geocoding/v5/mapbox.places/${site}.json`,
+        //     params: {
+        //         'access_token': 'pk.eyJ1IjoiZGFueWVsczMzMyIsImEiOiJjbDIyMXphcnYwYXR6M2pvMTg5bWg1bG0zIn0.5VmfBgk2-rL9gPs2amxh9A',
+        //         'limit':'5',
+        //         'language': 'es'
+        //     }
+        // });
+        // const response = await instance.get();
+
+        
+        
+        try {
+            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${site}.json?access_token=${process.env.MAPBOX_KEY}&limit=5&proximity=ip&types=place%2Cpostcode%2Caddress&language=es`
+            const response = await axios.get(url);
+            console.log("🚀 ~ file: search.js ~ line 16 ~ Search ~ city ~ response", response.data)
+        } catch (error) {
+            console.error(error);
+            // console.error('ERROR', error.statusCode);
+            // console.log();
+        }
+        
         return []; // return sites
     }
 
