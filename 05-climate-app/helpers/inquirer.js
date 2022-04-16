@@ -8,50 +8,22 @@ const menuQuestions = [
     message: "Chose a option",
     choices: [
       {
-        value: "1",
-        name: `${"1".green}. New task`,
+        value: 1,
+        name: `${"1".green}. Search City`,
       }
       ,
       {
-        value: '2',
-        name: `${"2".green}. List tasks`,
+        value: 2,
+        name: `${"2".green}. History`,
       },
       {
-        value: '3',
-        name: `${"3".green}. List completed task`,
-      },
-      {
-        value: '4',
-        name: `${"4".green}. List pending task`,
-      },
-      {
-        value: '5',
-        name: `${"5".green}. Complete task(s)`,
-      },
-      {
-        value: '6',
-        name: `${"6".green}. Delete task`,
-      },
-      {
-        value: '0',
-        name: `${"0".green}. Exit`,
-      },
+        value: 0,
+        name: `${"3".green}. Exit`,
+      }
     ],
   },
 ];
 
-/**
- * 
- * 
- *  1. New tas
- *  2. List task
-    3. List completed task
-    4. List pending task
-    5. Complete task(s)
-    6. Delete task
-    0. Exit
- * @returns 
- */
 const menuInquirer = async () => {
   console.clear();
   console.log("=================================".green);
