@@ -29,7 +29,7 @@ class Search {
         // const instance = axios.create({
         //     baseURL: `api.mapbox.com/geocoding/v5/mapbox.places/${site}.json`,
         //     params: {
-        //         'access_token': 'pk.eyJ1IjoiZGFueWVsczMzMyIsImEiOiJjbDIyMXphcnYwYXR6M2pvMTg5bWg1bG0zIn0.5VmfBgk2-rL9gPs2amxh9A',
+        //         'access_token': 'process.env.MAPBOX_KEY',
         //         'limit':'5',
         //         'language': 'es'
         //     }
