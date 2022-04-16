@@ -37,18 +37,24 @@ class Search {
         // const response = await instance.get();
 
         
-        
+        let sites = [];
         try {
             const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${site}.json?access_token=${process.env.MAPBOX_KEY}&limit=5&proximity=ip&types=place%2Cpostcode%2Caddress&language=es`
-            const response = await axios.get(url);
-            console.log("🚀 ~ file: search.js ~ line 16 ~ Search ~ city ~ response", response.data)
+            const response = await axios.get(url);            
+            sites =  response.data.features.map(place => {
+                return {
+                    id: place.id,
+                    name: place.place_name,
+                    latitude: place.center[0],
+                    longitude: place.center[1],
+                }
+            })
+
         } catch (error) {
             console.error(error);
-            // console.error('ERROR', error.statusCode);
-            // console.log();
         }
         
-        return []; // return sites
+        return sites;
     }
 
 }
