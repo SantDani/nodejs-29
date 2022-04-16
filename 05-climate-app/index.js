@@ -1,3 +1,4 @@
+
 const { readInput } = require("../04-to-do/helpers/inquirer");
 const { menuInquirer, pause, listPlaces } = require("./helpers/inquirer");
 const Search = require("./models/search.js");
@@ -13,28 +14,41 @@ const main = async () => {
         option = await menuInquirer();
 
         switch (option) {
-            case 1:
-                // Show message
+            case 1:// Show Climate Info
                 const siteToSearch = await readInput('City:')
                 const sites = await searches.city(siteToSearch);
 
                 const placeID = await listPlaces(sites);
+
+                if( placeID === '0') continue;
+
                 const placeSelected = sites.find(site => site.id === placeID)
+                // save to DB
+                searches.addToHistory(placeSelected.name)
 
-
+                const climate = await searches.climateSite(placeSelected.latitude, placeSelected.longitude)
+                console.clear();
                 console. log('\nInformation city\n'.green);
-                console. log ('City:', placeSelected.name);
-                console. log('Lat:', placeSelected.latitude);
-                console. log('Lng: ', placeSelected.longitude);
-                // console. log('Temperature:', );
-                // console. log('Minimum :', );
-                // console. log('Maximum :', );
-                 
+                console. log ('City:', placeSelected?.name);
+                console. log('Lat:', placeSelected?.latitude);
+                console. log('Lng: ', placeSelected?.longitude);
+                console. log('Temperature:', climate?.temperature);
+                console. log('Minimum :', climate?.min);
+                console. log('Maximum :', climate?.min );
+                console. log('Description :', climate?.description );
+                console. log('Feels like :', climate?.feels_like );
                 break;
-            case 2:
+                case 2:// Show History
+                const history = searches.history.history
+                if(history.length > 0){
+                    history.forEach((place, i)=> {
+                        const num = `${i + 1}`.green;
+                        console.log(`${num} - ${place.name}. ${place.time}`);
+                    })
+                }
                 
                 break;
-            case 0:
+            case 0:// Exit
                 
                 break;
         
@@ -46,5 +60,7 @@ const main = async () => {
 
     } while (option != 0);
 }
+
+
 
 main();
