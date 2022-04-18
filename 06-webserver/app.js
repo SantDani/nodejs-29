@@ -1,15 +1,16 @@
 const express = require('express')
+require('dotenv').config(); // read ENV from .env
 const app = express()
 var hbs = require('hbs');
 
 //Handlebars
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials', function (err) {
-    console.error(err);
+    if(err) console.error(err);
 });
 
 
-const PORT = 8080
+const PORT =  process.env.PORT;
 
 // Serve static content
 app.use(express.static('public'));
@@ -36,10 +37,5 @@ app.get('/elements', function (req, res) {
     })
 })
 
-
-
-app.get('*', function (req, res) {
-  res.sendFile(`${__dirname}/public/404.html`)
-})
-
+console.log(`Server is listening at http://localhost:${PORT}`)
 app.listen(PORT)
