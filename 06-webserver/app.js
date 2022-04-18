@@ -1,13 +1,16 @@
 const express = require('express')
 const app = express()
 
+app.set('view engine', 'hbs');
+
 const PORT = 8080
 
 // Serve static content
 app.use(express.static('public'));
 
+
 app.get('/', function (req, res) {
-  res.send('Home Page')
+  res.render('home')
 })
 
 app.get('/generic', function (req, res) {
