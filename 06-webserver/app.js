@@ -1,7 +1,13 @@
 const express = require('express')
 const app = express()
+var hbs = require('hbs');
 
+//Handlebars
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials', function (err) {
+    console.error(err);
+});
+
 
 const PORT = 8080
 
@@ -17,11 +23,17 @@ app.get('/', function (req, res) {
 })
 
 app.get('/generic', function (req, res) {
-  res.sendFile(`${__dirname}/public/generic.html`)
+    res.render('generic', {
+        name: 'Santiago D',
+        title: 'Node 29'
+    })
 })
 
 app.get('/elements', function (req, res) {
-  res.sendFile(`${__dirname}/public/elements.html`)
+    res.render('elements', {
+        name: 'Santiago D',
+        title: 'Node 29'
+    })
 })
 
 
