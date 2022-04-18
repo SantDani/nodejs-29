@@ -1,10 +1,17 @@
-const http = require('http')
-const PORT = 8080
-http.createServer((request, response)=>{
-    console.log(request);
-    response.writeHead(200, {'Content-Type': 'text/plain'})
-    response.write('Hello World from server');
-    response.end();
-}).listen(PORT);
+const express = require('express')
+const app = express()
 
-console.log('Listening at port ', PORT) // open in browser http://localhost:8080/
+const PORT = 8080
+
+// Serve static content
+app.use(express.static('public'));
+
+app.get('/', function (req, res) {
+  res.send('Home Page')
+})
+
+app.get('*', function (req, res) {
+  res.sendFile(`${__dirname}/public/404.html`)
+})
+
+app.listen(PORT)
