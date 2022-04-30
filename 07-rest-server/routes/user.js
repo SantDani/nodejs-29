@@ -5,10 +5,10 @@ const { userGet, userPost, userDelete, userPatch, userPut,  } = require('./../co
 const router = Router();
 
 router.get('/', userGet)
-router.post('/', userPost)
+router.post('/:id', userPost)
 router.patch('/', userPatch)
-router.delete('/', userDelete)
-router.put('/', userPut)
+router.delete('/:id', userDelete)
+router.put('/', userPut) 
 
 
 module.exports = router;
