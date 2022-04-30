@@ -1,13 +1,16 @@
-const { response } = require('express')
+const { response, request } = require('express')
 
 const userGet = (req, res = response)=>{   
     res.json({
         msg: 'API GET - Controller'
     })
 }
-const userPost = (req, res = response)=>{   
+const userPost = (req = request, res = response)=>{   
+
+    const body = req.body;
     res.json({
-        msg: 'API POST - Controller'
+        msg: 'API POST - Controller',
+        body: body
     })
 }
 const userDelete = (req, res = response)=>{   
