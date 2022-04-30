@@ -10,11 +10,19 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
 
+        // Middleware
+        this.middleware();
+
         this.routes();
     }
 
+    middleware(){
+        // public dir
+        this.app.use(express.static('public'))
+    }
+
     routes(){
-        this.app.get('/', (req, res)=> {
+        this.app.get('/api', (req, res)=> {
             res.send('Hello world from Model Server')
         })
     }
