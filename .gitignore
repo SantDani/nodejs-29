@@ -2,3 +2,4 @@
 04-to-do/node_modules/
 node_modules/
 05-climate-app/.env
+07-rest-server/.env
