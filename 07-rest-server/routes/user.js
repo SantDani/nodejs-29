@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
+
 const { isRoleValid, emailExists } = require('../helpers/db-validators');
 const { fieldValidator } = require('../middlewares/validate-fields');
 
@@ -22,7 +23,7 @@ router.post('/',
 ,userPost)
 router.patch('/', userPatch)
 router.delete('/:id', userDelete) 
-router.put('/', userPut) 
+router.put('/:id', userPut) 
 
 
 module.exports = router;
