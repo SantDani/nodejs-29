@@ -1,5 +1,6 @@
 const express = require('express')
-const cors = require('cors')
+const cors = require('cors');
+const dbConnection = require('../database/config');
 
 
 require('dotenv').config()
@@ -11,6 +12,9 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.pathUsers = '/api/users';
+
+        // Connect to DB
+        this.connectDB();
 
         // Middleware
         this.middleware();
@@ -35,11 +39,14 @@ class Server {
 
     }
 
-
     listen(){
         this.app.listen(this.port, ()=> {
             console.log('Server running at ', this.port);
         })
+    }
+
+    async connectDB(){
+        dbConnection()
     }
 }
 
