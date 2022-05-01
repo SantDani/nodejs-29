@@ -50,7 +50,8 @@ const userPut = async(req = request, res = response) => {
 
     const id = req.params.id;
 
-    const { password, google, email,...userUpdate } = req.body;
+    // _id: handle with _ids not valid
+    const {_id, password, google, email,...userUpdate } = req.body;
 
     
     if (password) {
