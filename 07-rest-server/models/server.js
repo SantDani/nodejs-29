@@ -34,7 +34,6 @@ class Server {
     }
 
     routes(){
-        
         this.app.use(this.pathUsers, require('../routes/user'))
 
     }

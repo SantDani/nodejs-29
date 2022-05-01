@@ -22,14 +22,7 @@ const userPost = async (req = request, res = response)=>{
 
     const user = new User({name, email, password, rol});
 
-    // verify email exists
-    const existsEmail = await User.findOne({email})
-
-    if(existsEmail){
-        return res.status(400).json({
-            msg:" Email already used"
-        })
-    }
+   
 
     // Encrypt password
     const salt = crypt.genSaltSync();
