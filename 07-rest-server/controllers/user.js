@@ -51,11 +51,15 @@ const userPost = async (req = request, res = response) => {
         user
     })
 }
-const userDelete = (req = request, res = response) => {
+const userDelete = async(req = request, res = response) => {
 
     const id = req.params.id;
+
+    const user = await User.findByIdAndUpdate(id,{status:false})
+
     res.json({
-        msg: 'API DELETE - Controller'
+        msg: 'API DELETE - Controller',
+        user
     })
 }
 const userPatch = (req, res = response) => {
