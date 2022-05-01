@@ -1,6 +1,8 @@
 const express = require('express')
+
 const cors = require('cors');
 const dbConnection = require('../database/config');
+const { request } = require('express');
 
 
 require('dotenv').config()
@@ -20,6 +22,7 @@ class Server {
         this.middleware();
 
         this.routes();
+        // this.mock(20)
     }
 
     middleware(){
@@ -46,6 +49,45 @@ class Server {
 
     async connectDB(){
         dbConnection()
+    }
+
+
+    async mock(totalUsers =20){
+
+
+   
+        for (var i = 0; i < totalUsers; i++) {
+            this.newUser(i)
+         }
+    }
+
+    newUser(index){
+        let user = {
+            "name": `user${index}`,
+            "email": `email${index}@email.com`,
+            "password": "123456789",
+            "rol": "ADMIN_ROLE",
+            "status": true,
+            "img": "",
+            "google": true
+        }
+        const userOptions ={
+            uri: `${this.pathUsers}`,
+            body: JSON.stringify(user),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        this.app.request(userOptions, (error, res)=>{
+            console.log('New user')
+
+        })
+
+        
+        // this.app.post(this.pathUsers, (req, res)=>{
+        //     res.send(req.bo)
+        // })
     }
 }
 

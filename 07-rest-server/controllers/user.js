@@ -4,15 +4,30 @@ const crypt = require('bcryptjs')
 
 const User = require('../models/user')
 
-const userGet = (req = request, res = response) => {
+const userGet = async (req = request, res = response) => {
 
-    const { type, search, limit = 10, page = 1 } = req.query;
+    // const { type, search, limit = 10, page = 1 } = req.query;
+    const { limit = 5, from = 0 } = req.query;
+
+
+    // const users = await User.find({status: true})
+    //     .skip(Number(from))
+    //     .limit(Number(limit));
+
+    // const total = await User.countDocuments({status: true});
+
+    const [total, users] = await  Promise.all([
+        User.countDocuments({status: true}),
+        User.find({status: true})
+            .skip(Number(from))
+            .limit(Number(limit))
+    ]);
+
+
+
     res.json({
-        msg: 'API GET - Controller',
-        type,
-        search,
-        limit,
-        page
+        total, 
+        users
     })
 }
 const userPost = async (req = request, res = response) => {
@@ -36,7 +51,9 @@ const userPost = async (req = request, res = response) => {
         user
     })
 }
-const userDelete = (req, res = response) => {
+const userDelete = (req = request, res = response) => {
+
+    const id = req.params.id;
     res.json({
         msg: 'API DELETE - Controller'
     })
@@ -46,20 +63,20 @@ const userPatch = (req, res = response) => {
         msg: 'API PATCH - Controller'
     })
 }
-const userPut = async(req = request, res = response) => {
+const userPut = async (req = request, res = response) => {
 
     const id = req.params.id;
 
     // _id: handle with _ids not valid
-    const {_id, password, google, email,...userUpdate } = req.body;
+    const { _id, password, google, email, ...userUpdate } = req.body;
 
-    
+
     if (password) {
         // Encrypt password
         const salt = crypt.genSaltSync();
         userUpdate.password = crypt.hashSync(password, salt)
     }
-    
+
     const user = await User.findByIdAndUpdate(id, userUpdate)
 
 
